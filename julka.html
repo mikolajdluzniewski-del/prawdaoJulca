@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Julka — lekcja życzliwości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --accent: #60a5fa;
+      --good: #34d399;
+      --warn: #fbbf24;
+      --bad: #f87171;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background:radial-gradient(1200px 600px at 80% -10%,rgba(96,165,250,.15),transparent), radial-gradient(900px 500px at 10% 110%, rgba(52,211,153,.12), transparent), var(--bg); color:var(--text);}
+    .container{max-width:980px;margin:0 auto;padding:32px}
+    header{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:24px}
+    .title{font-size:clamp(26px,4vw,44px);font-weight:800;letter-spacing:.3px;}
+    .subtitle{color:var(--muted);font-weight:400;margin-top:6px}
+    .card{background:linear-gradient(180deg, rgba(17,24,39,.9), rgba(15,23,42,.7));border:1px solid rgba(148,163,184,.15);box-shadow:var(--shadow);border-radius:var(--radius);padding:22px}
+    .grid{display:grid;grid-template-columns:1.1fr 1fr; gap:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);color:#bfdbfe;font-weight:600;font-size:14px}
+    .section-title{font-weight:700;font-size:20px;margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .list{display:grid;gap:10px;margin:10px 0 0;padding:0}
+    .list li{list-style:none;background:#0b1220;border:1px solid rgba(148,163,184,.14);padding:12px 14px;border-radius:12px}
+    .quote{font-style:italic;border-left:3px solid rgba(96,165,250,.5);padding-left:14px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.2);background:rgba(148,163,184,.08);margin:4px 6px 0 0;font-size:13px}
+    footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
+    button{cursor:pointer}
+    .controls{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{padding:10px 14px;border-radius:14px;border:1px solid rgba(148,163,184,.2);background:#0d1526;color:var(--text);font-weight:600;box-shadow:var(--shadow)}
+    .btn:active{transform:translateY(1px)}
+    .toast{position:fixed;right:20px;bottom:20px;background:#0b1220;color:var(--text);padding:12px 16px;border-radius:12px;border:1px solid rgba(148,163,184,.2);box-shadow:var(--shadow);opacity:0;transform:translateY(6px);transition:.25s ease}
+    .toast.show{opacity:1;transform:translateY(0)}
+    .progress{height:10px;background:#0a1020;border-radius:999px;border:1px solid rgba(148,163,184,.2);overflow:hidden}
+    .progress > span{display:block;height:100%;background:linear-gradient(90deg, var(--bad), var(--warn), var(--good));width:35%;transition:width .4s ease}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div class="badge" title="Fikcyjna postać">🌟 Fikcyjna postać</div>
+        <h1 class="title">Julka — lekcja życzliwości</h1>
+        <p class="subtitle">Strona o bohaterce, która <strong>miewa gorsze dni</strong>, ale uczy się lepiej rozumieć siebie i innych.</p>
+      </div>
+      <div class="card" style="min-width:260px">
+        <p class="section-title">Postęp empatii</p>
+        <div class="progress" aria-label="Poziom empatii Julki">
+          <span id="progressBar"></span>
+        </div>
+        <p class="muted" id="progressLabel" style="margin-top:8px">Dziś: 35%</p>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2 class="section-title">Kim jest Julka?</h2>
+        <p>Julka to uczennica szkoły średniej. Jest bystra, kreatywna i ma ogromne poczucie humoru. Bywa jednak bezpośrednia do bólu — co czasem odbierane jest jako nieuprzejmość. Ta strona pokazuje, jak uczy się <strong>mówić to samo, ale życzliwiej</strong>.</p>
+        <div style="margin-top:10px">
+          <span class="pill">🎨 kreatywna</span>
+          <span class="pill">🧠 bystra</span>
+          <span class="pill">🗣️ szczera</span>
+          <span class="pill">🌱 w procesie zmiany</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Co sprawiało trudność?</h2>
+        <ul class="list">
+          <li><strong>Słowa szybsze niż myśli:</strong> odpowiedź padała zanim pojawiła się refleksja.</li>
+          <li><strong>Ironia zamiast wsparcia:</strong> żart chronił przed bliskością, ale ranił.</li>
+          <li><strong>Zmęczenie i stres:</strong> w trudniejszych dniach brakowało jej cierpliwości.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Jak to się zmieniło?</h2>
+        <p>Julka wprowadziła małe nawyki, które robią dużą różnicę:</p>
+        <ul class="list">
+          <li><strong>Stop-klatka 3 sekundy:</strong> zanim odpowie, bierze oddech i sprawdza ton.</li>
+          <li><strong>Pytanie kontrolne:</strong> „Czy to, co powiem, pomaga?”</li>
+          <li><strong>Naprawianie po fakcie:</strong> „Przykro mi — mogłam to ująć lepiej.”</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Przykłady komunikatów</h2>
+        <p class="muted" style="margin:6px 0 10px">Kliknij, by zobaczyć łagodniejszą wersję.</p>
+        <div class="controls">
+          <button class="btn" data-from="To bez sensu." data-to="Nie do końca rozumiem — pokażesz, o co chodzi?">„To bez sensu.” → lepiej</button>
+          <button class="btn" data-from="Daj spokój." data-to="Zróbmy przerwę i wróćmy do tego za chwilę.">„Daj spokój.” → lepiej</button>
+          <button class="btn" data-from="Znowu źle." data-to="Spróbujmy inaczej — co jeśli tak?">„Znowu źle.” → lepiej</button>
+        </div>
+        <p class="quote" id="example">Kliknij jeden z przycisków, aby zobaczyć przykład.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Ta strona dotyczy <strong>fikcyjnej</strong> Julki i promuje empatię zamiast etykietek. Możesz ją łatwo edytować, by dopasować do własnej historii klasy lub projektu.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Zmieniono przykład 👌</div>
+
+  <script>
+    const ex = document.getElementById('example');
+    const toast = document.getElementById('toast');
+    const progressBar = document.getElementById('progressBar');
+    const progressLabel = document.getElementById('progressLabel');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1400);
+    }
+
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const from = btn.getAttribute('data-from');
+        const to = btn.getAttribute('data-to');
+        ex.innerHTML = `<strong>${from}</strong><br>➡️ <em>${to}</em>`;
+        showToast('Zmieniono przykład');
+        const current = parseInt(progressBar.style.width || '35');
+        const next = Math.min(current + 5, 100);
+        progressBar.style.width = next + '%';
+        progressLabel.textContent = `Dziś: ${next}%`;
+      });
+    });
+  </script>
+</body>
+</html>
